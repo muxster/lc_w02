@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 
+// interface for MyClass - example class covered in week 2
 @interface MyClass : NSObject
 {
 	float myFloat;
@@ -8,6 +9,40 @@
 - (void) hello;
 
 @end
+
+// interface for YourClass
+@interface YourClass : NSObject
+{
+	
+}
+
+- (void) goodbye;
+
+@end
+
+
+
+@implementation YourClass
+
+- (id) init
+{
+	self = [super init];
+	return self;
+}
+
+- (void) goodbye
+{
+	NSLog(@"Goodbye, nice seeing you!");
+}
+
+- (void) dealloc
+{
+	[super dealloc];
+}
+
+@end
+
+
 
 @implementation MyClass
 
@@ -26,14 +61,6 @@
 	NSLog(@"Hello, I'm your first Objective-C program!");
 }
 
-- (void) goodbye
-{
-	NSLog(@"Goodbye, nice seeing you!");
-}
-
-
-
-
 - (void) setMyFloat:(float)val
 {
 	myFloat = val;
@@ -44,10 +71,6 @@
 	return myFloat;
 }
 
-
-
-
-
 - (void) dealloc
 {
 	// release any retained objects here.
@@ -55,6 +78,10 @@
 }
 
 @end
+
+
+
+
 
 int main(int argc, char**argv)
 {
@@ -67,7 +94,9 @@ int main(int argc, char**argv)
 	[instance setMyFloat: 10.0f];
 	NSLog(@"new value is %f", [instance myFloat]);
 	
-	[instance goodbye];
+	// allocate an instance of YourClass
+	YourClass *ycinstance = [[YourClass alloc] init];
+	[ycinstance goodbye];	
 	
 	[pool release];
 	
