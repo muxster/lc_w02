@@ -3,10 +3,11 @@
 // interface for YourClass
 @interface YourClass : NSObject
 {
-	
+	// define an instance variable that will hold a message to be returned by the goodbye function
+	NSString* myString;
 }
 
-- (void) goodbye;
+- (NSString*) goodbye;
 
 @end
 
@@ -39,9 +40,12 @@
 	return self;
 }
 
-- (void) goodbye
+- (NSString*) goodbye
 {
-	NSLog(@"Goodbye, nice seeing you!");
+	//NSLog(@"Goodbye, nice seeing you!");
+	myString = @"Goodbye, nice seeing you!";
+	
+	return (myString);
 }
 
 - (void) dealloc
@@ -118,7 +122,12 @@ int main(int argc, char**argv)
 	
 	// allocate an instance of YourClass
 	YourClass *ycinstance = [[YourClass alloc] init];
-	[ycinstance goodbye];	
+	
+	// set this new instance as the friend of the MyClass instance
+	[instance setFriend: ycinstance];
+	
+	// now refer to our friend (within the MyClass instance) and have him introduce himself	
+	NSLog(@"This is my friend %@ and he says '%@'", [instance friend], [[instance friend] goodbye]);
 	
 	[pool release];
 	
