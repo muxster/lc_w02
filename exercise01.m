@@ -1,15 +1,5 @@
 #import <Foundation/Foundation.h>
 
-// interface for MyClass - example class covered in week 2
-@interface MyClass : NSObject
-{
-	float myFloat;
-}
-
-- (void) hello;
-
-@end
-
 // interface for YourClass
 @interface YourClass : NSObject
 {
@@ -19,6 +9,25 @@
 - (void) goodbye;
 
 @end
+
+
+
+// interface for MyClass - example class covered in week 2
+@interface MyClass : NSObject
+{
+	float myFloat;
+	
+	// pointer to an instance of YourClass
+	YourClass *friend;
+}
+
+- (void) hello;
+- (void) setFriend:(YourClass*)val;
+- (YourClass*) friend;
+
+@end
+
+
 
 
 
@@ -70,6 +79,19 @@
 {
 	return myFloat;
 }
+
+- (void) setFriend:(YourClass*)val
+{
+	[friend release];
+	friend = val;
+}
+
+- (YourClass*) friend
+{
+	return friend;
+}
+
+
 
 - (void) dealloc
 {
